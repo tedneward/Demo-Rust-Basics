@@ -1,3 +1,11 @@
+#[allow(dead_code)]
+
+// {{## BEGIN basics ##}}
+pub fn add(left: usize, right: usize) -> usize {
+    left + right
+}
+// {{## END basics ##}}
+
 // {{## BEGIN comments ##}}
 // This is a standard comment
 
@@ -8,17 +16,102 @@
 ///
 /// ```
 /// let arg = 5;
-/// let answer = my_crate::add_one(arg);
+/// let answer = rust_basics::add(5, arg);
 ///
-/// assert_eq!(6, answer);
+/// assert_eq!(10, answer);
 /// ```
 // {{## END comments ##}}
 
-// {{## BEGIN basics ##}}
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+
+// {{## BEGIN variables ##}}
+pub fn immutable_x() -> i32 {
+    let x = 5;
+    //x = 6; // ERROR!
+    println!("The value of x is: {x}");
+    return x;
 }
-// {{## END basics ##}}
+pub fn redeclaring_x() -> i32 {
+    let x = 5;
+    println!("The value of x is: {x}");
+    let x = x + 1;
+    println!("The value of x is: {x}");
+    return x;
+}
+pub fn mutable_x() -> i32 {
+    let mut x = 5;
+    println!("The value of x is: {x}");
+    x = 6;
+    println!("The value of x is: {x}");
+    return x;
+}
+// {{## END variables ##}}
+
+// {{## BEGIN scalars ##}}
+pub fn math_on_scalars() {
+    // addition
+    let _sum = 5 + 10; // unused, so prefix with "_"
+
+    // subtraction
+    let _difference = 95.5 - 4.3;
+
+    // multiplication
+    let _product = 4 * 30;
+
+    // division
+    let _quotient = 56.7 / 32.2;
+    let _truncated = -5 / 3; // Results in -1
+
+    // remainder/modulo
+    let _remainder = 43 % 5;
+}
+// {{## END scalars ##}}
+
+// {{## BEGIN loop ##}}
+fn loop_example() -> i32 {
+    let mut counter = 0;
+
+    let result = loop {
+        println!("Looping on {counter}...");
+        counter += 1;
+
+        if counter == 10 {
+            break counter * 2;
+        }
+    };
+
+    return result;
+}
+// {{## END loop ##}}
+
+// {{## BEGIN while ##}}
+fn while_countdown() {
+    let mut number = 3;
+
+    while number != 0 {
+        println!("{number}!");
+
+        number -= 1;
+    };
+
+    println!("LIFTOFF!!!");
+}
+// {{## END while ##}}
+
+// {{## BEGIN for ##}}
+fn for_examples() {
+    let a = [10, 20, 30, 40, 50];
+
+    for element in a {
+        println!("the value is: {element}");
+    }
+
+    // Use a Range object, reversed
+    for number in (1..4).rev() {
+        println!("{number}!");
+    }
+    println!("LIFTOFF!!!");
+}
+// {{## END for ##}}
 
 #[cfg(test)]
 mod tests {
@@ -28,5 +121,15 @@ mod tests {
     fn it_works() {
         let result = add(2, 2);
         assert_eq!(result, 4);
+    }
+
+    #[test]
+    fn variables_return_correctly() {
+        let result = immutable_x();
+        assert_eq!(result, 5);
+        let result = redeclaring_x();
+        assert_eq!(result, 6);
+        let result = mutable_x();
+        assert_eq!(result, 6);
     }
 }
