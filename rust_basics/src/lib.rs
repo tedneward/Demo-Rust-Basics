@@ -20,6 +20,9 @@ pub fn add(left: usize, right: usize) -> usize {
 ///
 /// assert_eq!(10, answer);
 /// ```
+///
+/// NOTE: rust_doc will sanity-check the code inside
+/// the Examples part of these comments!
 // {{## END comments ##}}
 
 
@@ -112,6 +115,15 @@ fn for_examples() {
     println!("LIFTOFF!!!");
 }
 // {{## END for ##}}
+
+// {{## BEGIN tuple ##}}
+fn tuple_fun() {
+    let tup = (500, 6.4, 1);
+    let (x, y, z) = tup; // destructuring
+
+    println!("The value of y is: {y}");
+}
+// {{## END tuple ##}}
 
 #[cfg(test)]
 mod tests {
