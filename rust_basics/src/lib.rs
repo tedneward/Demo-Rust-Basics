@@ -22,7 +22,8 @@ pub fn add(left: usize, right: usize) -> usize {
 /// ```
 ///
 /// NOTE: rust_doc will sanity-check the code inside
-/// the Examples part of these comments!
+/// the Examples part of these comments! 
+/// NOTE: cargo test will test the code here too!
 // {{## END comments ##}}
 
 
@@ -68,6 +69,60 @@ pub fn math_on_scalars() {
     let _remainder = 43 % 5;
 }
 // {{## END scalars ##}}
+
+// {{## BEGIN if ##}}
+fn if_example() -> i32 {
+    let test = 12;
+    let mut result = -1;
+    if test % 6 == 0 {
+        result = 1;
+    }
+    else {
+        result = 0;
+    }
+    // shorter version:
+    let result = if test % 6 == 0 { 1 } else { 0 };
+    result
+    // or even shorter:
+    //if test % 6 == 0 { 1 } else { 0 }
+}
+// {{## END if ##}}
+
+// {{## BEGIN match ##}}
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
+}
+
+fn might_return_nothing() -> Option<i32> {
+    // do some complex randomization here
+    // then always return 42
+    Some(42)
+}
+fn get_something_from_nothing() -> i32{
+    match might_return_nothing() {
+        Some(x) => { 
+            println!("We got {}", x);
+            return x;
+        },
+        None => {
+            println!("Nope, nada");
+            return 0;
+        }
+    }
+}
+// {{## END match ##}}
 
 // {{## BEGIN loop ##}}
 fn loop_example() -> i32 {
@@ -140,6 +195,20 @@ fn plus_one(x: i32) -> i32 {
     //return x + 1;     // acceptable
 }// {{## END function ##}}
 
+// {{## BEGIN closure ##}}
+fn closure_call() {
+    let print_int = |x: i32| println!("{}", x);
+    print_int(5);
+
+    let printing_add = |l: i32, r: i32| -> i32 {
+        println!("Adding {} and {}.", l, r);
+        l + r
+          // This closure can be as long as we want, just like a function.
+    };
+    printing_add(5, 5);
+}
+// {{## END closure ##}}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -158,5 +227,23 @@ mod tests {
         assert_eq!(result, 6);
         let result = mutable_x();
         assert_eq!(result, 6);
+    }
+
+    #[test]
+    fn if_works() {
+        let result = if_example();
+        assert_eq!(result, 1);
+    }
+
+    #[test]
+    fn match_works() {
+        let result = value_in_cents(Coin::Quarter);
+        assert_eq!(result, 25);
+    }
+
+    #[test]
+    fn option_works() {
+        let result = get_something_from_nothing();
+        assert_eq!(result, 42);
     }
 }

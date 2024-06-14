@@ -64,10 +64,7 @@ impl Rectangle {
 }
 
 fn use_object() {
-    //let rect = Rectangle{
-    //    width: 12, 
-    //    height: 24,
-    //};
+    //let rect = Rectangle{ width: 12, height: 24, };
     let rect = Rectangle::new(12, 24);
     println!("The area of a {} x {} rectangle is {}", 
         rect.width, rect.height, rect.area());
@@ -95,7 +92,10 @@ fn use_trait() {
         width: 12, 
         height: 24,
     };
-    dbg!(&rect);
+    dbg!(&rect);    // "[src/main.rs:95:5] &rect = DRectangle {
+                    //        width: 12,
+                    //        height: 24,
+                    //  }" printed to stderr
     println!("The area of a {} x {} rectangle is {}", 
         rect.width, rect.height, rect.area());
 }
