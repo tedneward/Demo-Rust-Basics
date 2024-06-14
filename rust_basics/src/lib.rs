@@ -188,11 +188,11 @@ fn function_call() {
 }
 
 fn plus_one(x: i32) -> i32 {
-    //x + 1   // NOTE: semicolon would make this a statement
-            // and therefore not an implicit return value
-            // and therefore an error!
-    return x + 1      // acceptable
-    //return x + 1;     // acceptable
+    x + 1           // NOTE: semicolon would make this a statement
+                    // and therefore not an implicit return value
+                    // and therefore an error!
+    //return x + 1  // NOTE: acceptable
+    //return x + 1; // NOTE: acceptable
 }// {{## END function ##}}
 
 // {{## BEGIN closure ##}}

@@ -46,10 +46,7 @@ fn use_struct() {
 // {{## END structs ##}}
 
 // {{## BEGIN impls ##}}
-struct Rectangle {
-    width: u32,
-    height: u32,
-}
+struct Rectangle { width: u32, height: u32, }
 
 impl Rectangle {
     fn area(&self) -> u32 {
