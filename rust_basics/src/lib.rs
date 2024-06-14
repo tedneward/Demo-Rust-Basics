@@ -125,6 +125,21 @@ fn tuple_fun() {
 }
 // {{## END tuple ##}}
 
+// {{## BEGIN function ##}}
+fn function_call() {
+    let x = plus_one(5);
+
+    println!("The value of x is: {x}");
+}
+
+fn plus_one(x: i32) -> i32 {
+    //x + 1   // NOTE: semicolon would make this a statement
+            // and therefore not an implicit return value
+            // and therefore an error!
+    return x + 1      // acceptable
+    //return x + 1;     // acceptable
+}// {{## END function ##}}
+
 #[cfg(test)]
 mod tests {
     use super::*;
