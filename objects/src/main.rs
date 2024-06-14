@@ -71,6 +71,9 @@ fn use_object() {
     let rect = Rectangle::new(12, 24);
     println!("The area of a {} x {} rectangle is {}", 
         rect.width, rect.height, rect.area());
+    let rect = Rectangle::square(12);
+    println!("The area of a {} x {} square is {}", 
+        rect.width, rect.height, rect.area());
 }
 // {{## END impls ##}}
 
