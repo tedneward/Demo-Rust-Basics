@@ -7,8 +7,7 @@ fn use_prims() {
     let rect_w = 12;
     let rect_h = 24;
     let area = rectangle_area(rect_w, rect_h);
-    println!("The area of a {} x {} rectangle is {}", 
-        rect_w, rect_h, area);
+    println!("The area of a {rect_w} x {rect_h} rectangle is {area}");
 }
 // {{## END procedural ##}}
 
