@@ -104,7 +104,9 @@ fn value_in_cents(coin: Coin) -> u8 {
         Coin::Quarter => 25,
     }
 }
+// {{## END match ##}}
 
+// {{## BEGIN match-option ##}}
 fn might_return_nothing() -> Option<i32> {
     // do some complex randomization here
     // then always return 42
@@ -122,7 +124,7 @@ fn get_something_from_nothing() -> i32{
         }
     }
 }
-// {{## END match ##}}
+// {{## END match-option ##}}
 
 // {{## BEGIN loop ##}}
 fn loop_example() -> i32 {
